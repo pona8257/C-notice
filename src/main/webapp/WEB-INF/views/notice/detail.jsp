@@ -46,7 +46,12 @@
 
 	<div id="detail_screen">
 		<h1>${notice.notice_no}번 게시글 상게보기</h1>
-		<div>구분 : ${notice.gubun}</div>
+		<c:if test="${notice.gubun == 1}">
+			<div>구분 : 일반</div>
+		</c:if>
+		<c:if test="${notice.gubun == 2}">
+			<div>구분 : 긴급</div>
+		</c:if>
 		<div>제목 : ${notice.title}</div>
 		<div>${notice.content}</div>
 		<hr>
@@ -60,12 +65,12 @@
 	<div id="edit_screen">
 		<div style="cursor: pointer;" onclick="fnBack()">← 뒤로 가기</div>
 		<h1>공지사항 편집하기</h1>
-		<form method="post" action="${contextPath}/notice/mofify.do">
+		<form method="post" action="${contextPath}/notice/modify.do">
 			<div>
-				<label for="gubun">구분</label>
-				<select name="gubun">
-					<option>일반</option>
-					<option>긴급</option>	
+				<label for="gubun" >구분</label>
+				<select name="gubun" id="gubun">
+					<option value="1">일반</option>
+					<option value="2">긴급</option>	
 				</select>
 			</div>
 			<div>
